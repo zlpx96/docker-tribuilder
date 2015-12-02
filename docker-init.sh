@@ -1,4 +1,16 @@
 #!/bin/bash
+set -e
+
+export DEBIAN_FRONTEND=noninteractive
+export LC_ALL=en_US.UTF-8
+export LANG=C
+export LANGUAGE=C
+
+wget -qO- https://deb.nodesource.com/setup_5.x | bash -
+apt-get update
+apt-get install --no-install-recommends -y \
+    git nodejs xvfb xserver-xorg-video-dummy netcat-openbsd
+rm -rf /var/lib/apt/lists/*
 
 adduser --disabled-password --gecos "" air
 echo 'export WINEDEBUG=fixme-all' >> ~air/setenv
@@ -34,3 +46,4 @@ echo '. ~air/setenv' >> ~air/.bashrc
 # Create the project source dir
 mkdir -p /src
 chown air:air /src
+

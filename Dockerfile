@@ -1,9 +1,15 @@
 FROM nitvotlu/wine
+
 COPY docker-init.sh /docker-init.sh
-COPY docker-entry.sh /docker-entry.sh
 RUN /docker-init.sh
-RUN apt-get update && apt-get install -y xvfb --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+# Fix linker on iOS
+COPY ld64.exe /opt/air_sdk/lib/aot/bin/ld64/ld64.exe
+
+COPY xorg.conf /xorg.conf
+COPY docker-entry.sh /docker-entry.sh
 COPY bin /home/air/bin
+
 WORKDIR /src
 ENTRYPOINT ["/docker-entry.sh"]
 CMD ["su", "-", "air"]
