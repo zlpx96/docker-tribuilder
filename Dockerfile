@@ -10,6 +10,6 @@ COPY xorg.conf /xorg.conf
 COPY docker-entry.sh /docker-entry.sh
 COPY bin /home/air/bin
 
-WORKDIR /src
 ENTRYPOINT ["/docker-entry.sh"]
-CMD ["su", "-", "air"]
+
+CMD ["true"]
