@@ -1,3 +1,11 @@
 #!/bin/bash
 . /home/air/setenv
+
+Xorg -noreset +extension GLX +extension RANDR +extension RENDER -logfile ./xorg.0.log -config /xorg.conf :84 &
+sleep 5
+export DISPLAY=:84
+export WINEDEBUG=-all
+
 wine "$AIR_HOME/bin/adl.exe" "$@"
+
+killall Xorg

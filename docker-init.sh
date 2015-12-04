@@ -33,7 +33,7 @@ EOF
 # Install
 apt-get update
 apt-get install --no-install-recommends -y \
-    git build-essential vim curl rsync nodejs xvfb xserver-xorg-video-dummy netcat-openbsd docker-engine
+    git build-essential vim curl rsync nodejs xvfb xserver-xorg-video-dummy xserver-xorg-input-void netcat-openbsd docker-engine
 rm -rf /var/lib/apt/lists/*
 
 # Install docker-compose
