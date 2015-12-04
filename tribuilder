@@ -5,9 +5,12 @@ if [ "_$NO_RM" = _ ]; then
     RM="--rm"
 fi
 
+if [ "_$NO_DIND" = _ ]; then
+    DIND="-v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker"
+fi
+
 docker run \
-    -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker \
-    $RM -it \
+    $DIND $RM -it \
     -e CONFIG_PLATFORM_TYPE=$CONFIG_PLATFORM_TYPE \
     -e CONFIG_PLATFORM_OS=$CONFIG_PLATFORM_OS \
     -e CONFIG_PLATFORM_TARGET=$CONFIG_PLATFORM_TARGET \
