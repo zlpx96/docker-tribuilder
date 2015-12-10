@@ -1,5 +1,7 @@
 FROM nitvotlu/wine
 
+ENV AIR_SDK_VERSION=20.0.0.204
+
 COPY docker-init.sh /docker-init.sh
 RUN /docker-init.sh
 
