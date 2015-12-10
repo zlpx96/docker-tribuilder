@@ -9,6 +9,10 @@ if [ "_$NO_DIND" = _ ]; then
     DIND="-v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker"
 fi
 
+if [ "_$AIRSDK" = _ ]; then
+    AIRSDK=latest
+fi
+
 docker run \
     $DIND $RM -it \
     -e CONFIG_PLATFORM_TYPE=$CONFIG_PLATFORM_TYPE \
@@ -29,4 +33,4 @@ docker run \
     -e CONFIG_PROVISIONING_IOS_RELEASE=$CONFIG_PROVISIONING_IOS_RELEASE \
     -e CONFIG_KEYSTORE_IOS_RELEASE=$CONFIG_KEYSTORE_IOS_RELEASE \
     -e CONFIG_STOREPASS_IOS_RELEASE=$CONFIG_STOREPASS_IOS_RELEASE \
-    -v $(pwd):$(pwd) -w $(pwd) --hostname tribuilder jeko/tribuilder:latest "$@"
+    -v $(pwd):$(pwd) -w $(pwd) --hostname tribuilder jeko/tribuilder:$AIRSDK "$@"
