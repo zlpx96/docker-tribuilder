@@ -55,9 +55,11 @@ EOF
 chmod +x /docker-init-win-jdk.sh
 su - air -c /docker-init-win-jdk.sh
 
+AIR_SHORT_VERSION=`echo ${AIR_SDK_VERSION}|cut -d. -f1,2`
+
 mkdir -p /opt/air_sdk
 cd /opt/air_sdk
-wget http://airdownload.adobe.com/air/win/download/latest/AIRSDK_Compiler.zip
+wget http://airdownload.adobe.com/air/win/download/${AIR_SHORT_VERSION}/AIRSDK_Compiler.zip
 unzip AIRSDK_Compiler.zip
 rm AIRSDK_Compiler.zip
 echo 'export AIR_HOME=/opt/air_sdk' >> ~air/setenv
